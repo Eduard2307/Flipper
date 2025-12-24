@@ -1,3 +1,0 @@
-﻿#!/usr/bin/env bash
-APP_HOME=$(pwd)
-exec bash "./gradle/wrapper/gradle-wrapper.jar" "$@"
