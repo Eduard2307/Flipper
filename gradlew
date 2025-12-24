@@ -1,2 +1,2 @@
-﻿#!/usr/bin/env bash
-exec bash "./gradle/wrapper/gradle-wrapper.jar" "$@"
+#!/usr/bin/env bash
+exec "./gradle/wrapper/gradle-wrapper.jar" "$@"
