@@ -194,65 +194,56 @@ class BadKbActivity : AppCompatActivity() {
         }
     }
 
-    private fun sendKey(key: Byte, modifier: Byte = 0) {
+    private suspend fun sendKey(key: Byte, modifier: Byte = 0) {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) return
         
-        // Key Down
         val report = ByteArray(8)
-        report[0] = modifier // Modifier
-        report[2] = key      // Key code
-        hidDevice?.sendReport(connectedDevice, 0, report)
-
-        // Key Up (Release)
-        val emptyReport = ByteArray(8)
-        hidDevice?.sendReport(connectedDevice, 0, emptyReport)
+        report[0] = modifier
+        report[2] = key
+        
+        try {
+            hidDevice?.sendReport(connectedDevice, 0, report)
+            delay(5) // Hold key for 5ms
+            
+            // Release
+            val releaseReport = ByteArray(8)
+            hidDevice?.sendReport(connectedDevice, 0, releaseReport)
+            
+        } catch (e: Exception) {
+            log("Send Error: ${e.message}")
+        }
     }
 
-    private fun charToHid(c: Char): Pair<Byte, Byte> {
-        // Expanded map for numbers, symbols, and letters
-        return when (c) {
-            in 'a'..'z' -> Pair((c.code - 'a'.code + 0x04).toByte(), 0)
-            in 'A'..'Z' -> Pair((c.code - 'A'.code + 0x04).toByte(), 0x02) // Shift
-            in '1'..'9' -> Pair(((c.code - '1'.code) + 0x1E).toByte(), 0)
-            '0' -> Pair(0x27, 0)
-            
-            // Shifted Numbers (Symbols)
-            '!' -> Pair(0x1E, 0x02)
-            '@' -> Pair(0x1F, 0x02)
-            '#' -> Pair(0x20, 0x02)
-            '$' -> Pair(0x21, 0x02)
-            '%' -> Pair(0x22, 0x02)
-            '^' -> Pair(0x23, 0x02)
-            '&' -> Pair(0x24, 0x02)
-            '*' -> Pair(0x25, 0x02)
-            '(' -> Pair(0x26, 0x02)
-            ')' -> Pair(0x27, 0x02)
-
-            // Common Symbols
-            ' ' -> Pair(0x2C, 0)
-            '-' -> Pair(0x2D, 0)
-            '_' -> Pair(0x2D, 0x02)
-            '=' -> Pair(0x2E, 0)
-            '+' -> Pair(0x2E, 0x02)
-            '[' -> Pair(0x2F, 0)
-            '{' -> Pair(0x2F, 0x02)
-            ']' -> Pair(0x30, 0)
-            '}' -> Pair(0x30, 0x02)
-            '\\' -> Pair(0x31, 0)
-            '|' -> Pair(0x31, 0x02)
-            ';' -> Pair(0x33, 0)
-            ':' -> Pair(0x33, 0x02)
-            '\'' -> Pair(0x34, 0)
-            '"' -> Pair(0x34, 0x02)
-            ',' -> Pair(0x36, 0)
-            '<' -> Pair(0x36, 0x02)
-            '.' -> Pair(0x37, 0)
-            '>' -> Pair(0x37, 0x02)
-            '/' -> Pair(0x38, 0)
-            '?' -> Pair(0x38, 0x02)
-            
-            else -> Pair(0x00, 0)
+    private fun charToHid(char: Char): Pair<Byte, Byte> {
+        val code: Int
+        var mod: Int = 0
+        
+        if (char.isUpperCase()) {
+            mod = 0x02 // Left Shift
         }
+        
+        // Simple ASCII to HID mapping (incomplete, covers basics)
+        val c = char.lowercaseChar()
+        code = when (c) {
+            in 'a'..'z' -> (c - 'a') + 0x04
+            in '1'..'9' -> (c - '1') + 0x1E
+            '0' -> 0x27
+            ' ' -> 0x2C
+            '-' -> 0x2D
+            '=' -> 0x2E
+            '[' -> 0x2F
+            ']' -> 0x30
+            '\\' -> 0x31
+            ';' -> 0x33
+            '\'' -> 0x34
+            ',' -> 0x36
+            '.' -> 0x37
+            '/' -> 0x38
+            '\n' -> 0x28 // Enter
+            else -> 0x2C // Default to space if unknown
+        }
+        
+        return Pair(code.toByte(), mod.toByte())
     }
 
     private fun log(msg: String) {

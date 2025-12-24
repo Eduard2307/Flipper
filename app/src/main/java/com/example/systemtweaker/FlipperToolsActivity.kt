@@ -168,7 +168,8 @@ class FlipperToolsActivity : AppCompatActivity() {
 
         log("> Starting BLE Scan...")
         val scanner = bluetoothAdapter!!.bluetoothLeScanner
-        scanner.startScan(object : ScanCallback() {
+        
+        val scanCallback = object : ScanCallback() {
             override fun onScanResult(callbackType: Int, result: ScanResult?) {
                 result?.device?.let { device ->
                     val name = if (ActivityCompat.checkSelfPermission(this@FlipperToolsActivity, Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_GRANTED) {
@@ -181,12 +182,14 @@ class FlipperToolsActivity : AppCompatActivity() {
             override fun onScanFailed(errorCode: Int) {
                 log("[-] Scan failed: $errorCode")
             }
-        })
+        }
+
+        scanner.startScan(scanCallback)
         
         // Stop scan after 5 seconds to save battery
         toolLog.postDelayed({
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN) == PackageManager.PERMISSION_GRANTED || Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
-                scanner.stopScan(object : ScanCallback() {})
+                scanner.stopScan(scanCallback)
                 log("> BLE Scan stopped.")
             }
         }, 5000)

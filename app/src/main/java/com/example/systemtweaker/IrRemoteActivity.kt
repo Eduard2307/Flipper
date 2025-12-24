@@ -117,14 +117,6 @@ class IrRemoteActivity : AppCompatActivity() {
             }
         }
     }
-                    delay(2000)
-                }
-                log("> Strobe complete.")
-            } catch (e: Exception) {
-                log("[-] Transmission failed: ${e.message}")
-            }
-        }
-    }
 
     private fun transmitPowerCodes() {
         if (irManager?.hasIrEmitter() != true) return
