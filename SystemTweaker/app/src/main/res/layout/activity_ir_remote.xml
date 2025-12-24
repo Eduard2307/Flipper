@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/black"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="UNIVERSAL IR REMOTE"
+        android:textColor="@color/hacker_green"
+        android:textSize="20sp"
+        android:typeface="monospace"
+        android:textStyle="bold"
+        android:layout_marginBottom="24dp"/>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:rowCount="3">
+
+        <Button
+            android:id="@+id/btnPower"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:text="POWER (ALL)"
+            android:backgroundTint="@color/hacker_red"
+            android:textColor="@color/black"
+            android:typeface="monospace"
+            android:layout_margin="4dp"/>
+
+        <Button
+            android:id="@+id/btnMute"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:text="MUTE"
+            android:backgroundTint="@color/hacker_green"
+            android:textColor="@color/black"
+            android:typeface="monospace"
+            android:layout_margin="4dp"/>
+
+        <Button
+            android:id="@+id/btnVolUp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:text="VOL +"
+            android:backgroundTint="@color/hacker_green"
+            android:textColor="@color/black"
+            android:typeface="monospace"
+            android:layout_margin="4dp"/>
+
+        <Button
+            android:id="@+id/btnChUp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:text="CH +"
+            android:backgroundTint="@color/hacker_green"
+            android:textColor="@color/black"
+            android:typeface="monospace"
+            android:layout_margin="4dp"/>
+
+        <Button
+            android:id="@+id/btnVolDown"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:text="VOL -"
+            android:backgroundTint="@color/hacker_green"
+            android:textColor="@color/black"
+            android:typeface="monospace"
+            android:layout_margin="4dp"/>
+
+        <Button
+            android:id="@+id/btnChDown"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:text="CH -"
+            android:backgroundTint="@color/hacker_green"
+            android:textColor="@color/black"
+            android:typeface="monospace"
+            android:layout_margin="4dp"/>
+
+    </GridLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="INFRASTRUCTURE CONTROL"
+        android:textColor="@color/hacker_red"
+        android:textSize="18sp"
+        android:typeface="monospace"
+        android:textStyle="bold"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="8dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnTrafficEmergency"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="TRAFFIC (HIGH)"
+            android:backgroundTint="@color/hacker_red"
+            android:textColor="@color/black"
+            android:typeface="monospace"
+            android:layout_marginEnd="4dp"/>
+
+        <Button
+            android:id="@+id/btnTrafficTransit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="TRAFFIC (LOW)"
+            android:backgroundTint="#FFA500"
+            android:textColor="@color/black"
+            android:typeface="monospace"
+            android:layout_marginStart="4dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp">
+
+        <Button
+            android:id="@+id/btnTesla"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TESLA CHARGE PORT"
+            android:backgroundTint="@color/hacker_green"
+            android:textColor="@color/black"
+            android:typeface="monospace"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/irLog"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="16dp"
+        android:background="@color/hacker_dark_green"
+        android:padding="8dp"
+        android:text="> IR Blaster Ready.\n> CAUTION: Using 'POWER (ALL)' will cycle common TV power codes."
+        android:textColor="@color/hacker_green"
+        android:typeface="monospace"/>
+
+</LinearLayout>

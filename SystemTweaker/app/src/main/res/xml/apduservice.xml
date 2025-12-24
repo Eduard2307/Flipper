@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<host-apdu-service xmlns:android="http://schemas.android.com/apk/res/android"
+    android:description="@string/app_name"
+    android:requireDeviceUnlock="false">
+    <aid-group android:category="payment" android:description="Payment Emulation">
+        <!-- Proximity Payment System Environment (PPSE) -->
+        <aid-filter android:name="325041592E5359532E4444463031"/>
+        <!-- Visa -->
+        <aid-filter android:name="A0000000031010"/>
+        <!-- Mastercard -->
+        <aid-filter android:name="A0000000041010"/>
+        <!-- Amex -->
+        <aid-filter android:name="A00000002501"/>
+    </aid-group>
+</host-apdu-service>

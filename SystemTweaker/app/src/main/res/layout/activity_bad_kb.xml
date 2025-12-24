@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/black"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="BAD-KB (HID INJECTOR)"
+        android:textColor="@color/hacker_green"
+        android:textSize="20sp"
+        android:typeface="monospace"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="PAYLOAD EDITOR (DUCKY SCRIPT)"
+        android:textColor="@color/hacker_green"
+        android:textSize="12sp"
+        android:typeface="monospace"
+        android:layout_marginBottom="4dp"/>
+
+    <EditText
+        android:id="@+id/etScript"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/hacker_dark_green"
+        android:textColor="@color/hacker_green"
+        android:padding="8dp"
+        android:gravity="top|start"
+        android:typeface="monospace"
+        android:text="DELAY 1000\nGUI r\nDELAY 500\nSTRING cmd\nENTER\nDELAY 500\nSTRING echo Hacked by FlipShark!\nENTER"/>
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnPresetCmd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="OPEN CMD"
+                android:backgroundTint="@color/hacker_green"
+                android:textColor="@color/black"
+                android:typeface="monospace"
+                android:layout_marginEnd="8dp"/>
+
+            <Button
+                android:id="@+id/btnPresetRick"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="RICKROLL"
+                android:backgroundTint="@color/hacker_green"
+                android:textColor="@color/black"
+                android:typeface="monospace"
+                android:layout_marginEnd="8dp"/>
+
+            <Button
+                android:id="@+id/btnPresetFakeUpd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="FAKE UPDATE"
+                android:backgroundTint="@color/hacker_green"
+                android:textColor="@color/black"
+                android:typeface="monospace"
+                android:layout_marginEnd="8dp"/>
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp">
+
+        <Button
+            android:id="@+id/btnConnect"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="CONNECT PC"
+            android:backgroundTint="@color/hacker_green"
+            android:textColor="@color/black"
+            android:typeface="monospace"
+            android:layout_marginEnd="8dp"/>
+
+        <Button
+            android:id="@+id/btnInject"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="INJECT PAYLOAD"
+            android:backgroundTint="@color/hacker_red"
+            android:textColor="@color/black"
+            android:typeface="monospace"
+            android:layout_marginStart="8dp"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/kbLog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="> Status: Disconnected."
+        android:textColor="@color/hacker_green"
+        android:typeface="monospace"
+        android:maxLines="3"/>
+
+</LinearLayout>

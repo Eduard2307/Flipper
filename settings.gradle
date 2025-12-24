@@ -1,0 +1,2 @@
+rootProject.name = "SystemTweaker"
+include ':app'
